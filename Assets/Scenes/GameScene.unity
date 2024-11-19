@@ -4657,7 +4657,7 @@ MonoBehaviour:
   gameInput: {fileID: 719016141}
   countersLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   kitchenObjectHoldPoint: {fileID: 1532153924}
 --- !u!114 &531668590
 MonoBehaviour:
