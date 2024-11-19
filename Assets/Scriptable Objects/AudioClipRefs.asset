@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c941882fc00414a408b336831aa96b4a, type: 3}
+  m_Name: AudioClipRefs
+  m_EditorClassIdentifier: 
+  chop:
+  - {fileID: 8300000, guid: 2563001af953ec449a4ad82da4d52871, type: 3}
+  deliveryFail:
+  - {fileID: 8300000, guid: 78908c5fb8569454fb96edd0fe491ca3, type: 3}
+  deliverySuccess:
+  - {fileID: 8300000, guid: 163bb760a77c61c45891575b7cf5c76f, type: 3}
+  objectDrop:
+  - {fileID: 8300000, guid: ea6b20917ef3f104889bf071154315a4, type: 3}
+  objectPickUp:
+  - {fileID: 8300000, guid: ea6b20917ef3f104889bf071154315a4, type: 3}
+  slimeMoving:
+  - {fileID: 8300000, guid: b9cd564ca3cca7b4caaf8af57e93bbd7, type: 3}
+  stoveSizzle:
+  - {fileID: 8300000, guid: 6c62915776f5bf5429defe2dc8a52410, type: 3}
+  trash:
+  - {fileID: 8300000, guid: 5aa327a3bfaf7b2438fc27c9b785ffae, type: 3}
+  warning:
+  - {fileID: 8300000, guid: 60e931772719bb9428ef3bba3679ee03, type: 3}
+  countdown:
+  - {fileID: 8300000, guid: e6f27eb4e4d7e4347b6261bf43aa2df2, type: 3}
