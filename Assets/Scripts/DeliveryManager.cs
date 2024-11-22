@@ -1,9 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class DeliveryManager : MonoBehaviour
+public class DeliveryManager : NetworkBehaviour
 {
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
@@ -17,8 +17,8 @@ public class DeliveryManager : MonoBehaviour
     // Here we place the recipes the customers are waiting for
     private List<RecipeSO> waitingRecipeSOList;
 
-    private float spawnRecipeTimer;
-    private float spawnRecipeTImerMax = 4f;
+    private float spawnRecipeTimer = 4f;
+    private float spawnRecipeTimerMax = 4f;
     private int waitingRecipeMax = 4;
     private int successfulRecipesAmount;
 
@@ -34,26 +34,42 @@ public class DeliveryManager : MonoBehaviour
 
     private void Update()
     {
+        // Only the server will generate the recipes
+        if (!IsServer)
+            return;
+
         // Start timer
         spawnRecipeTimer -= Time.deltaTime;
 
         if (spawnRecipeTimer <= 0)
         {
-            spawnRecipeTimer = spawnRecipeTImerMax;
+            spawnRecipeTimer = spawnRecipeTimerMax;
 
             // Spawn a new recipe only if the game has started AND under the max recipe count
             if (GameManager.Instance.IsGamePlaying() && waitingRecipeSOList.Count < waitingRecipeMax)
             {
-                // Grab a random recipe from the list
-                RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count)];
+                int waitingRecipeIndex = UnityEngine.Random.Range(0, recipeListSO.recipeSOList.Count);
+
                 //Debug.Log(waitingRecipeSO.recipeName);
 
-                // Add it to the waiting list
-                waitingRecipeSOList.Add(waitingRecipeSO);
-
-                OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
+                // We want to tell the client that a new recipe has been generated
+                SpawnNewWaitingRecipeClientRpc(waitingRecipeIndex);
             }
         }
+    }
+
+    // NOTE - The host is also a client, so it will run both the code in Update and that
+    // inside this method. The clients, however, will only run this method.
+    [ClientRpc]
+    private void SpawnNewWaitingRecipeClientRpc(int waitingRecipeIndex)
+    {
+        // Grab a random recipe from the list
+        RecipeSO waitingRecipeSO = recipeListSO.recipeSOList[waitingRecipeIndex];
+
+        // Add it to the waiting list
+        waitingRecipeSOList.Add(waitingRecipeSO);
+
+        OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
     }
 
     public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
@@ -95,13 +111,7 @@ public class DeliveryManager : MonoBehaviour
                 {
                     Debug.Log("Player delivered the correct recipe!");
 
-                    successfulRecipesAmount++;
-
-                    // Remove the delivered recipe from the waiting list
-                    waitingRecipeSOList.RemoveAt(i);
-
-                    OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
-                    OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
+                    DeliverCorrectRecipeServerRpc(i);
 
                     return;
                 }
@@ -111,7 +121,40 @@ public class DeliveryManager : MonoBehaviour
         // No matches found!
         // Player did not deliver a correct recipe
         //Debug.Log("Player did not deliver a correct recipe");
+        DeliverIncorrectRecipeServerRpc();
+    }
+
+    // RequireOwnership = false; This means that the client that does not own
+    // this network object will be able to trigger this server rpc
+    [ServerRpc(RequireOwnership = false)]
+    private void DeliverIncorrectRecipeServerRpc()
+    {
+        DeliverIncorrectRecipeClientRpc();
+    }
+
+    [ClientRpc]
+    private void DeliverIncorrectRecipeClientRpc()
+    {
         OnRecipeFailed?.Invoke(this, EventArgs.Empty);
+    }
+
+    // NOTE - Only the server will run this method
+    [ServerRpc(RequireOwnership = false)]
+    private void DeliverCorrectRecipeServerRpc(int waitingRecipeSOListIndex)
+    {
+        DeliverCorrectRecipeClientRpc(waitingRecipeSOListIndex);
+    }
+
+    [ClientRpc]
+    private void DeliverCorrectRecipeClientRpc(int waitingRecipeSOListIndex)
+    {
+        successfulRecipesAmount++;
+
+        // Remove the delivered recipe from the waiting list
+        waitingRecipeSOList.RemoveAt(waitingRecipeSOListIndex);
+
+        OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+        OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
     }
 
     public List<RecipeSO> GetWaitingRecipeSOList()
