@@ -57,6 +57,10 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     // Update is called once per frame
     void Update()
     {
+        // We only want the local player to run the movement and interactions logic
+        if (!IsOwner)
+            return;
+
         HandleMovement();
         HandleInteractions();
     }
@@ -152,7 +156,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
 
         if (canMove)
         {
-            // Apply movement to the trasform
+            // Apply movement to the transform
             transform.position += moveDir * moveDistance;
         }
 
