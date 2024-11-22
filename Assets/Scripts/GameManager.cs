@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private State state;
 
-    private float countdownToStartTimer = 3f;
+    private float countdownToStartTimer = 1f;
     private float gamePlayingTimer;
     [Tooltip("The duration of the game in seconds.")]
     [SerializeField] private float gamePlayingTimerMax = 60f;
@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     {
         GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+
+        // DEBUG TRIGGER GAME START AUTOMATICALLY
+        state = State.CountdownToStart;
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -102,7 +106,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        Debug.Log(state);
+        //Debug.Log(state);
     }
 
     public bool IsGamePlaying()
