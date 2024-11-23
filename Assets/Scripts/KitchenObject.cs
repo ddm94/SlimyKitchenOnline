@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class KitchenObject : MonoBehaviour
+public class KitchenObject : NetworkBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
@@ -27,11 +26,11 @@ public class KitchenObject : MonoBehaviour
         kitchenObjectParent.SetKitchenObject(this);
 
         // Set position to the new clear counter follow point
-        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
+        //transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
 
         // Ensure the KitchenObject's position and rotation remain unchanged
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
+        //transform.localPosition = Vector3.zero;
+        //transform.localRotation = Quaternion.identity;
     }
 
     public IKitchenObjectParent GetKitchenObjectParent() { return kitchenObjectParent; }
@@ -59,14 +58,8 @@ public class KitchenObject : MonoBehaviour
         }
     }
 
-    public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
+    public static void SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
     {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
-
-        KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-
-        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
-
-        return kitchenObject;
+        KitchenGameMultiplayer.Instance.SpawnKitchenObject(kitchenObjectSO, kitchenObjectParent);
     }
 }
