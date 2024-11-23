@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 5668619039565551561}
   - component: {fileID: -205431080400112585}
   - component: {fileID: 1409275857119032959}
+  - component: {fileID: 1230479968212084454}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Untagged
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 610841498
+  GlobalObjectIdHash: 872776531
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -435,6 +436,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fcd7fc9bbaedc7d40b7e9e55e6ddf7bf, type: 2}
   - {fileID: 11400000, guid: 296dc34094095cc449e9239bfe57a16d, type: 2}
   - {fileID: 11400000, guid: 554c9c54cb75382459c62588ba8595d6, type: 2}
+--- !u!114 &1230479968212084454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504694620320278403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e8a69914fb7b1499f0b4e018f8b85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8187366569371447074
 PrefabInstance:
   m_ObjectHideFlags: 0
