@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DeliveryCounter : BaseCounter
 {
     public override void Interact(Player player)
@@ -14,7 +10,7 @@ public class DeliveryCounter : BaseCounter
                 DeliveryManager.Instance.DeliverRecipe(plateKitchenObject);
 
                 // Destroy the plate
-                player.GetKitchenObject().DestroySelf();
+                KitchenObject.DestroyKitchenObject(player.GetKitchenObject());
             }
         }
     }
