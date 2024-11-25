@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEditor;
 using UnityEngine;
 
 public class Player : NetworkBehaviour, IKitchenObjectParent
@@ -24,7 +24,9 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
 
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] LayerMask countersLayerMask;
+    [SerializeField] LayerMask collisionsLayerMask;
     [SerializeField] private Transform kitchenObjectHoldPoint;
+    [SerializeField] private List<Vector3> spawnPositionList;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
@@ -37,6 +39,12 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         {
             LocalInstance = this;
         }
+
+        // Spawn the players at different positions
+        // NOTE - This actually causes an error if a player disconnects and another one connects
+        // And that's because OwnerClientId is not sequential
+        // TODO - Refactor when implementing the lobby and chara selection
+        transform.position = spawnPositionList[(int)OwnerClientId];
 
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
     }
@@ -129,10 +137,9 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
 
         float moveDistance = moveSpeed * Time.deltaTime;
         float playerRadius = 1f;
-        float playerHeight = 2f;
 
         // We are not colliding with an object
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
+        bool canMove = !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDir, Quaternion.identity, moveDistance, collisionsLayerMask);
 
         // Cannot move towards moveDir
         if (!canMove)
@@ -141,7 +148,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
             Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized;
             canMove = 
                 (moveDir.x < -.5f || moveDir.x > +.5f) && 
-                !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+                !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDirX, Quaternion.identity, moveDistance, collisionsLayerMask);
 
             if (canMove)
             {
@@ -154,7 +161,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
                 Vector3 moveDirZ = new Vector3(0f, 0f, moveDir.z).normalized;
                 canMove = 
                     (moveDir.z < -.5f || moveDir.z > +.5f) && 
-                    !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
+                    !Physics.BoxCast(transform.position, Vector3.one * playerRadius, moveDirZ, Quaternion.identity, moveDistance, collisionsLayerMask);
 
                 if (canMove)
                 {
