@@ -131,6 +131,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1012099844
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -927,6 +932,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 706720525
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -1453,14 +1463,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RunInBackground: 1
+  LogLevel: 1
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 151347122}
     PlayerPrefab: {fileID: 8722720778391190629, guid: 699332112838abc46b475583c877f54f,
       type: 3}
-    Prefabs:
-      NetworkPrefabsLists:
-      - {fileID: 11400000, guid: 64e8a63bd857f994db89dae7f907d154, type: 2}
+    NetworkPrefabs:
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 0fdaa0d6fd5188c41a5df3444929299c,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 9e4977ec6dcbf6444ac923fe92a791ba,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: cc6c82b16a6e8dd42be93f17c5347a5e,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7021986172031612541, guid: ff398493cdbce534b9a064e44f3dc05e,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 5f3692610730084479a994a7455b17ef,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: ccedbb7eb459ee14495f35e84c908867,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 14e38e891c5d7e449b2920e2b5195474,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 4f48d904c98775345994deff30f51826,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 2ec2168029752ec4eb687a037d5c241f,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 18dfb6170f1a3bf459910a1018d66bac,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7504694620320278403, guid: 97e0b592379f99646ba519da7e1bdfa3,
+        type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -1476,9 +1552,6 @@ MonoBehaviour:
     LoadSceneTimeOut: 120
     SpawnTimeout: 10
     EnableNetworkLogs: 1
-    OldPrefabList: []
-  RunInBackground: 1
-  LogLevel: 1
 --- !u!4 &151347124
 Transform:
   m_ObjectHideFlags: 0
@@ -2267,6 +2340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361211381415326508, guid: f3d0e85d593744e4286cb79371d27527,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2854774565
       objectReference: {fileID: 0}
     - target: {fileID: 8420110933191094749, guid: f3d0e85d593744e4286cb79371d27527,
         type: 3}
@@ -4262,6 +4340,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1633652101
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -4603,6 +4686,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 2647678826654570295, guid: 3584ac67c78b6004f86821779ef792a6,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 378245939
+      objectReference: {fileID: 0}
     - target: {fileID: 3912512438330709446, guid: 3584ac67c78b6004f86821779ef792a6,
         type: 3}
       propertyPath: m_Name
@@ -4813,6 +4901,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stove_Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 6289049936409153024, guid: 6dd1d154c47bcf04f85273a77c9a0531,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2230317591
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4990,6 +5083,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1155753967887093088, guid: d5cb22ef0f3bc6c4e8f04357a0fe00d6,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 105694610
+      objectReference: {fileID: 0}
     - target: {fileID: 9118176584948355672, guid: d5cb22ef0f3bc6c4e8f04357a0fe00d6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5128,6 +5226,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 505269344
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -5230,12 +5333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 1790211925
-  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!114 &602999829
@@ -7599,6 +7697,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cutting_Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 2202817425528579464, guid: 8ece8a44642556a4ea9b07a1864d613b,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1364275665
+      objectReference: {fileID: 0}
     - target: {fileID: 8075428640116112048, guid: 8ece8a44642556a4ea9b07a1864d613b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7903,6 +8006,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1060541405
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -8706,6 +8814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stove_Counter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6289049936409153024, guid: 6dd1d154c47bcf04f85273a77c9a0531,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3008131134
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8859,6 +8972,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 2882497896110621441, guid: eddf2b3a3d0a0f94b87fd35e2b7d78ae,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4078079871
+      objectReference: {fileID: 0}
     - target: {fileID: 4247677405253222896, guid: eddf2b3a3d0a0f94b87fd35e2b7d78ae,
         type: 3}
       propertyPath: m_Name
@@ -9067,6 +9185,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1978255064
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -9280,6 +9403,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3639780528
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -9625,6 +9753,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2348447945
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -9749,12 +9882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalObjectIdHash: 564817968
-  InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
 --- !u!1 &1076485852
@@ -10304,6 +10432,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cutting_Counter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2202817425528579464, guid: 8ece8a44642556a4ea9b07a1864d613b,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1805773141
+      objectReference: {fileID: 0}
     - target: {fileID: 8075428640116112048, guid: 8ece8a44642556a4ea9b07a1864d613b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10373,6 +10506,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 834395569
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -11776,6 +11914,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 657312522632775511, guid: 121799da2ca94ba478a24c59c042f405,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3826762130
+      objectReference: {fileID: 0}
     - target: {fileID: 2012342439991248294, guid: 121799da2ca94ba478a24c59c042f405,
         type: 3}
       propertyPath: m_Name
@@ -12196,6 +12339,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1958689603
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -13353,6 +13501,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3975267073
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -13641,6 +13794,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1879406387
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -13795,6 +13953,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4071825281
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -14717,6 +14880,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4589978246190280642, guid: 672584f192062c44bab1c9d179a5fa88,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3213945446
+      objectReference: {fileID: 0}
     - target: {fileID: 5850938643836317946, guid: 672584f192062c44bab1c9d179a5fa88,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14914,6 +15082,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1325482665
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -15232,6 +15405,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 28407294379117764, guid: 15592685deb925a48aac82c9a5cd22fc,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4743256
+      objectReference: {fileID: 0}
     - target: {fileID: 1339421494053244469, guid: 15592685deb925a48aac82c9a5cd22fc,
         type: 3}
       propertyPath: m_Name
@@ -15607,6 +15785,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7574640388770417953, guid: c740732a1a1d94f49a23b4bbd4c6032b,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3550319343
+      objectReference: {fileID: 0}
     - target: {fileID: 8929793383247024080, guid: c740732a1a1d94f49a23b4bbd4c6032b,
         type: 3}
       propertyPath: m_Name
@@ -15752,6 +15935,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4158259003
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -16211,6 +16399,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3065386623
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -16424,6 +16617,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1669352080
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
@@ -16497,6 +16695,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435255472}
     m_Modifications:
+    - target: {fileID: 1030576367448583047, guid: e99757981f0f25d4ca990c4fc635e0fb,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 4033406795
+      objectReference: {fileID: 0}
     - target: {fileID: 2071426265813952886, guid: e99757981f0f25d4ca990c4fc635e0fb,
         type: 3}
       propertyPath: m_Name
