@@ -14,7 +14,7 @@ public class TestingNetcodeUI : MonoBehaviour
         {
             Debug.Log("HOST");
 
-            NetworkManager.Singleton.StartHost();
+            KitchenGameMultiplayer.Instance.StartHost();
 
             Hide();
         });
@@ -23,7 +23,7 @@ public class TestingNetcodeUI : MonoBehaviour
         {
             Debug.Log("CLIENT");
 
-            NetworkManager.Singleton.StartClient();
+            KitchenGameMultiplayer.Instance.StartClient();
 
             Hide();
         });
