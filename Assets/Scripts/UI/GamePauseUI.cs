@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,24 +24,26 @@ public class GamePauseUI : MonoBehaviour
 
         mainMenuButton.onClick.AddListener(() =>
         {
+            NetworkManager.Singleton.Shutdown();
+
             Loader.Load(Loader.Scene.MainMenuScene);
         });
     }
 
     private void Start()
     {
-        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
-        GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+        GameManager.Instance.OnLocalGamePaused += GameManager_OnLocalGamePaused;
+        GameManager.Instance.OnLocalGameUnpaused += GameManager_OnLocalGameUnpaused;
 
         Hide();
     }
 
-    private void GameManager_OnGameUnpaused(object sender, System.EventArgs e)
+    private void GameManager_OnLocalGameUnpaused(object sender, System.EventArgs e)
     {
         Hide();
     }
 
-    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    private void GameManager_OnLocalGamePaused(object sender, System.EventArgs e)
     {
         Show();
     }

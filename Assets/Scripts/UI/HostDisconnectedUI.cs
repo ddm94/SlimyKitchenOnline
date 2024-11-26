@@ -1,11 +1,9 @@
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverUI : MonoBehaviour
+public class HostDisconnectedUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI recipeDeliveredText;
     [SerializeField] private Button mainMenuButton;
 
     private void Awake()
@@ -20,22 +18,17 @@ public class GameOverUI : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+        NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
 
         Hide();
     }
 
-    private void GameManager_OnStateChanged(object sender, System.EventArgs e)
+    private void NetworkManager_OnClientDisconnectCallback(ulong clientID)
     {
-        if (GameManager.Instance.IsGameOver())
+        // Server is shutting down
+        if (clientID == NetworkManager.ServerClientId)
         {
             Show();
-
-            recipeDeliveredText.text = DeliveryManager.Instance.GetSuccessfulRecipeAmount().ToString();
-        }
-        else
-        {
-            Hide();
         }
     }
 
@@ -46,6 +39,6 @@ public class GameOverUI : MonoBehaviour
 
     private void Hide()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); 
     }
 }
