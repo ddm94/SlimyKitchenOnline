@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
@@ -14,8 +13,7 @@ public class MainMenuUI : MonoBehaviour
         playButton.onClick.AddListener(() =>
         {
             // Click
-            Loader.Load(Loader.Scene.GameScene);
-
+            Loader.Load(Loader.Scene.LobbyScene);
         });
 
         quitButton.onClick.AddListener(() =>

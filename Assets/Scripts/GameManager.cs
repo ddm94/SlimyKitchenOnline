@@ -22,6 +22,8 @@ public class GameManager : NetworkBehaviour
         GameOver,
     }
 
+    [SerializeField] private Transform playerPrefab;
+
     private NetworkVariable<State> state = new (State.WaitingToStart);
 
     private NetworkVariable<float> countdownToStartTimer = new (3f);
@@ -62,7 +64,22 @@ public class GameManager : NetworkBehaviour
         isGamePaused.OnValueChanged += IsGamePaused_OnValueChanged;
 
         if (IsServer)
+        {
             NetworkManager.Singleton.OnClientDisconnectCallback += GameManager_OnClientDisconnectCallback;
+            // OnLoadEventCompleted is trigger when all the clients have loaded
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SceneManager_OnLoadEventCompleted;
+        }
+    }
+
+    private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    {
+        // Spawn all the players
+        foreach (ulong clientID in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            Transform playerTransform = Instantiate(playerPrefab);
+
+            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientID, true);
+        }
     }
 
     private void GameManager_OnClientDisconnectCallback(ulong clientID)
