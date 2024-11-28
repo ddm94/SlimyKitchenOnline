@@ -74,15 +74,15 @@ public class GameManager : NetworkBehaviour
     private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
         // Spawn all the players
-        foreach (ulong clientID in NetworkManager.Singleton.ConnectedClientsIds)
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             Transform playerTransform = Instantiate(playerPrefab);
 
-            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientID, true);
+            playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
         }
     }
 
-    private void GameManager_OnClientDisconnectCallback(ulong clientID)
+    private void GameManager_OnClientDisconnectCallback(ulong clientId)
     {
         autoTestGamePausedState = true;
     }
@@ -129,10 +129,10 @@ public class GameManager : NetworkBehaviour
 
         bool allClientsReady = true;
 
-        foreach (ulong clientID in NetworkManager.Singleton.ConnectedClientsIds)
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             // This player is not ready
-            if (!playerReadyDictionary.ContainsKey(clientID) || !playerReadyDictionary[clientID])
+            if (!playerReadyDictionary.ContainsKey(clientId) || !playerReadyDictionary[clientId])
             {
                 allClientsReady = false;
 
@@ -282,10 +282,10 @@ public class GameManager : NetworkBehaviour
 
     private void TestGamePausedState()
     {
-        foreach (ulong clientID in NetworkManager.Singleton.ConnectedClientsIds)
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             // This player paused
-            if (playerPausedDictionary.ContainsKey(clientID) && playerPausedDictionary[clientID])
+            if (playerPausedDictionary.ContainsKey(clientId) && playerPausedDictionary[clientId])
             {
                 isGamePaused.Value = true;
 

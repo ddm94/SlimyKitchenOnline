@@ -27,6 +27,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     [SerializeField] LayerMask collisionsLayerMask;
     [SerializeField] private Transform kitchenObjectHoldPoint;
     [SerializeField] private List<Vector3> spawnPositionList;
+    [SerializeField] private PlayerVisual playerVisual;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
@@ -41,10 +42,7 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
         }
 
         // Spawn the players at different positions
-        // NOTE - This actually causes an error if a player disconnects and another one connects
-        // And that's because OwnerClientId is not sequential
-        // TODO - Refactor when implementing the lobby and chara selection
-        transform.position = spawnPositionList[(int)OwnerClientId];
+        transform.position = spawnPositionList[KitchenGameMultiplayer.Instance.GetPlayerDataIndexFromClientId(OwnerClientId)];
 
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
 
@@ -54,9 +52,9 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
             NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
     }
 
-    private void NetworkManager_OnClientDisconnectCallback(ulong clientID)
+    private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
-        if (clientID == OwnerClientId && HasKitchenObject())
+        if (clientId == OwnerClientId && HasKitchenObject())
         {
             KitchenObject.DestroyKitchenObject(GetKitchenObject());
         }
@@ -67,6 +65,9 @@ public class Player : NetworkBehaviour, IKitchenObjectParent
     {
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
         GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+
+        PlayerData playerData = KitchenGameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
+        playerVisual.SetPlayerColor(KitchenGameMultiplayer.Instance.GetPlayerColor(playerData.colorId));
     }
 
     private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)

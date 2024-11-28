@@ -29,7 +29,7 @@ public class ConnectionResponseMessageUI : MonoBehaviour
 
         if (messageText.text == string.Empty)
         {
-            messageText.text = "Failed to connect to server.";
+            messageText.text = "Failed to connect to server".ToUpper();
         }
     }
 
