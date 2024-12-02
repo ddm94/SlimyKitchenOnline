@@ -23,12 +23,18 @@ public class CharacterSelectPlayer : MonoBehaviour
     {
         KitchenGameMultiplayer.Instance.OnPlayerDataNetworkListChanged += KitchenGameMultiplayer_OnPlayerDataNetworkListChanged;
         CharacterSelectReady.Instance.OnReadyChanged += CharacterSelectReady_OnReadyChanged;
+        NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
 
         // Uncomment this and remove the kickButton logic in UpdatePlayer() IF you are experiencing errors
         // Only visible on the server
         //kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
 
         UpdatePlayer();
+    }
+
+    private void NetworkManager_OnClientConnectedCallback(ulong clientId)
+    {
+        CharacterSelectReady.Instance.UpdateReadyState(clientId);
     }
 
     private void CharacterSelectReady_OnReadyChanged(object sender, System.EventArgs e)
@@ -57,7 +63,7 @@ public class CharacterSelectPlayer : MonoBehaviour
                 // Show kick buttons for other players, hide for the host
                 if (NetworkManager.Singleton.LocalClientId != playerData.clientId)
                 {
-                    kickButton.gameObject.SetActive(true);  // Show kick button for non-host players
+                    kickButton.gameObject.SetActive(true); // Show kick button for non-host players
                 }
                 else
                 {
@@ -66,7 +72,7 @@ public class CharacterSelectPlayer : MonoBehaviour
             }
             else
             {
-                kickButton.gameObject.SetActive(false);  // Clients should not see the kick button at all
+                kickButton.gameObject.SetActive(false); // Clients should not see the kick button at all
             }
 
             playerVisual.SetPlayerColor(KitchenGameMultiplayer.Instance.GetPlayerColor(playerData.colorId));
@@ -89,6 +95,10 @@ public class CharacterSelectPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        KitchenGameMultiplayer.Instance.OnPlayerDataNetworkListChanged -= KitchenGameMultiplayer_OnPlayerDataNetworkListChanged;
+        if (KitchenGameMultiplayer.Instance != null)
+            KitchenGameMultiplayer.Instance.OnPlayerDataNetworkListChanged -= KitchenGameMultiplayer_OnPlayerDataNetworkListChanged;
+
+        if (NetworkManager.Singleton != null)
+            NetworkManager.Singleton.OnClientConnectedCallback -= NetworkManager_OnClientConnectedCallback;
     }
 }

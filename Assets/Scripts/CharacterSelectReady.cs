@@ -17,6 +17,41 @@ public class CharacterSelectReady : NetworkBehaviour
         playerReadyDictionary = new Dictionary<ulong, bool>();
     }
 
+    public void UpdateReadyState(ulong clientId)
+    {
+        UpdateReadyStateServerRpc(clientId);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void UpdateReadyStateServerRpc(ulong clientId)
+    {
+        // Send the ready state for all players to the newly connected client
+        foreach (var entry in playerReadyDictionary)
+        {
+            UpdateReadyStateClientRpc(clientId, entry.Key, entry.Value);
+        }
+    }
+
+    [ClientRpc]
+    private void UpdateReadyStateClientRpc(ulong clientId, ulong playerId, bool isReady)
+    {
+        if (NetworkManager.Singleton.LocalClientId == clientId)
+        {
+            // Update the ready state for this specific player
+            if (!playerReadyDictionary.ContainsKey(playerId))
+            {
+                playerReadyDictionary.Add(playerId, isReady);
+            }
+            else
+            {
+                playerReadyDictionary[playerId] = isReady;
+            }
+
+            // Notify listeners about the change
+            OnReadyChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     public void SetPlayerReady()
     {
         SetPlayerReadyServerRpc();
