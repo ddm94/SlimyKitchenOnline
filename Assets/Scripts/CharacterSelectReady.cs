@@ -81,6 +81,9 @@ public class CharacterSelectReady : NetworkBehaviour
 
         if (allClientsReady)
         {
+            // Clean up the lobby when the game starts
+            KitchenGameLobby.Instance.DeleteLobby();
+
             Loader.LoadNetwork(Loader.Scene.GameScene);
         }
     }
