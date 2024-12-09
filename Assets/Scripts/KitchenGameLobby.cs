@@ -54,7 +54,8 @@ public class KitchenGameLobby : MonoBehaviour
             // Making in impossible to test with multiple builds
             // To solve this, we initialize with a different profile every time
             InitializationOptions initializationOptions = new InitializationOptions();
-            initializationOptions.SetProfile(UnityEngine.Random.Range(0, 1000).ToString());
+            // Can comment this out for the final build
+            //initializationOptions.SetProfile(UnityEngine.Random.Range(0, 1000).ToString());
 
             await UnityServices.InitializeAsync(initializationOptions);
 
