@@ -4,15 +4,25 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button playMultiplayerButton;
+    [SerializeField] private Button playSingleplayerButton;
     [SerializeField] private Button quitButton;
 
     private void Awake()
     {
         // () => Lambda Expression where () is to define the params of the function, which in this case are none
-        playButton.onClick.AddListener(() =>
+        playMultiplayerButton.onClick.AddListener(() =>
         {
+            KitchenGameMultiplayer.playMultiplayer = true;
+
             // Click
+            Loader.Load(Loader.Scene.LobbyScene);
+        });
+
+        playSingleplayerButton.onClick.AddListener(() =>
+        {
+            KitchenGameMultiplayer.playMultiplayer = false;
+
             Loader.Load(Loader.Scene.LobbyScene);
         });
 

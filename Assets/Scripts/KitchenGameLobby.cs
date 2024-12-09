@@ -65,6 +65,10 @@ public class KitchenGameLobby : MonoBehaviour
 
     private void Update()
     {
+        // Single Player
+        if (!KitchenGameMultiplayer.playMultiplayer)
+            return;
+
         HandleHeartbeat();
         HandlePeriodicListLobbies();
     }
