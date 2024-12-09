@@ -14,6 +14,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private TMP_InputField playerNameInputField;
     [SerializeField] private Transform lobbyContainer;
     [SerializeField] private Transform lobbyTemplate;
+    [SerializeField] private Transform singlePlayerBlackScreen;
     [SerializeField] private LobbyCreateUI lobbyCreateUI;
 
     private void Awake()
@@ -41,6 +42,10 @@ public class LobbyUI : MonoBehaviour
         });
 
         lobbyTemplate.gameObject.SetActive(false);
+
+        // Hide Lobby Scene behind a black screen when in Single Player
+        if (!KitchenGameMultiplayer.playMultiplayer)
+            singlePlayerBlackScreen.gameObject.SetActive(true);
     }
 
     private void Start()
